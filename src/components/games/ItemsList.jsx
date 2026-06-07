@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Check, Plus } from 'lucide-react';
 
-export default function ItemsList({ items, currentUserId, currentUserName, onClaimItem, onReleaseItem, onAddItem }) {
+export default function ItemsList({ items, currentUserId, currentUserName: _currentUserName, onClaimItem, onReleaseItem, onAddItem }) {
   const [newItem, setNewItem] = useState('');
   const [newEmoji, setNewEmoji] = useState('🎉');
   const [showAdd, setShowAdd] = useState(false);

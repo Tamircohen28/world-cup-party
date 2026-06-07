@@ -22,11 +22,14 @@ World Cup 2026 watch party coordinator. A React + Vite SPA backed by [Base44](ht
 ## Commands
 
 ```bash
-npm run dev        # start dev server on :5173
-npm run build      # production build → dist/
-npm run lint       # ESLint (quiet mode)
-npm run lint:fix   # ESLint auto-fix
-npm run typecheck  # TypeScript check (no emit)
+npm run dev           # start dev server on :5173
+npm run build         # production build → dist/
+npm run lint          # ESLint (quiet mode)
+npm run lint:fix      # ESLint auto-fix
+npm run typecheck     # TypeScript check (no emit)
+npm run test          # run unit tests (Vitest)
+npm run test:watch    # Vitest in watch mode
+npm run test:coverage # Vitest with v8 coverage
 ```
 
 ## Commit convention
@@ -35,9 +38,18 @@ npm run typecheck  # TypeScript check (no emit)
 
 Types: `feat`, `fix`, `refactor`, `docs`, `chore`, `test`
 
+## AI features
+
+`MatchBuzz` and `MatchInsights` use `base44.integrations.Core.InvokeLLM` with `add_context_from_internet: true` and a `response_json_schema` for structured output. Both are wrapped in `<ErrorBoundary>` in `GameDetail.jsx`. See [docs/engineering/architecture/ai-features.md](docs/engineering/architecture/ai-features.md).
+
+## Testing
+
+Tests live in `src/lib/__tests__/`. The test stack is **Vitest + @testing-library/react + @testing-library/jest-dom**. Test setup is in `src/test-setup.js`. Vitest config is in `vite.config.js` under the `test` key.
+
 ## Hard constraints
 
 - Never commit `.env.local` or any file containing real Base44 credentials
 - Never replace `base44/.app.jsonc` placeholder with a real app ID
 - `src/lib/matchData.js` is a static fixture list — do not fetch match data dynamically without explicit instruction; the entire 2026 schedule is intentionally embedded
 - The app targets mobile-first layouts; keep `max-w-lg mx-auto` on page roots
+- All new AI components must be wrapped in `<ErrorBoundary>` at their call site

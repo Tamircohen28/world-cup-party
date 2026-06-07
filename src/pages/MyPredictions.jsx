@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { getFlag, getStageName, formatShortDateIDT } from '@/lib/flags';
+import { getFlag, formatShortDateIDT } from '@/lib/flags';
 import { getPredictionState } from '@/lib/predictions';
 import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';

@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { getFlag, formatIDT, formatShortDateIDT, getStageName } from '@/lib/flags';
+import { getFlag, formatIDT, formatShortDateIDT } from '@/lib/flags';
 import { ArrowLeft, Users, MapPin, Package } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
@@ -37,7 +37,6 @@ export default function HostDashboard() {
   }, [matches]);
 
   const myParties = useMemo(() => {
-    const now = new Date();
     return watchParties
       .filter(p => p.host_user_id === user?.id)
       .map(p => {

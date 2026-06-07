@@ -14,6 +14,7 @@ import MessageFeed from '@/components/games/MessageFeed';
 import MatchInsights from '@/components/games/MatchInsights';
 import MatchBuzz from '@/components/games/MatchBuzz';
 import SplitwisePanel from '@/components/games/SplitwisePanel';
+import ErrorBoundary from '@/components/ErrorBoundary';
 import CountdownTimer from '@/components/games/CountdownTimer';
 import ShareButton from '@/components/games/ShareButton';
 import PredictionTab from '@/components/predictions/PredictionTab';
@@ -96,7 +97,7 @@ export default function GameDetailPage() {
       } else {
         toast.error(res.data?.error || 'Failed to add to calendar');
       }
-    } catch (e) {
+    } catch (_e) {
       toast.error('Could not connect to Google Calendar. Make sure it\'s connected in settings.');
     } finally {
       setCalSyncing(false);
@@ -339,14 +340,18 @@ export default function GameDetailPage() {
         {!isPast && (
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">🔥 Pre-Match Buzz</h3>
-            <MatchBuzz match={match} />
+            <ErrorBoundary>
+              <MatchBuzz match={match} />
+            </ErrorBoundary>
           </div>
         )}
 
         {/* Match Insights */}
         <div>
           <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">📊 Match Insights</h3>
-          <MatchInsights match={match} />
+          <ErrorBoundary>
+            <MatchInsights match={match} />
+          </ErrorBoundary>
         </div>
 
         {/* RSVP */}

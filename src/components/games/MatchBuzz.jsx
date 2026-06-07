@@ -2,7 +2,6 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Loader2, Zap, Newspaper } from 'lucide-react';
-import { getFlag } from '@/lib/flags';
 
 export default function MatchBuzz({ match }) {
   const isKnownTeams = match.home_team !== 'TBD' && match.away_team !== 'TBD';

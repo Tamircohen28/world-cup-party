@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { getFlag, formatIDT, getStageName } from '@/lib/flags';
+import { getFlag, formatIDT } from '@/lib/flags';
 
 const MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const DAY_NAMES = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
@@ -95,7 +95,7 @@ export default function CalendarView({ matches, rsvpMap }) {
                 isSelected ? 'bg-primary text-primary-foreground' :
                 isToday ? 'bg-primary/15 text-primary' :
                 hasMatch ? 'hover:bg-muted' : 'opacity-40'
-              }`}
+              } ${hasAttending && !isSelected ? 'ring-1 ring-primary/50' : ''}`}
               disabled={!hasMatch}
             >
               <span className="text-xs font-semibold">{day}</span>

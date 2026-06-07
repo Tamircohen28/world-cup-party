@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { Loader2, TrendingUp, Swords, BarChart3, Info } from 'lucide-react';
+import { Loader2, Swords, BarChart3, Info } from 'lucide-react';
 import { getFlag } from '@/lib/flags';
 
 export default function MatchInsights({ match }) {
