@@ -16,6 +16,9 @@ World Cup 2026 watch party coordinator. A React + Vite SPA backed by [Base44](ht
 | `src/lib/flags.js` | Country flag helpers and date/timezone formatting |
 | `src/pages/` | One file per route |
 | `src/components/` | Shared UI; `ui/` are shadcn/ui primitives |
+| `src/hooks/useGameDetail.js` | Data-fetching and mutation hook for GameDetail |
+| `src/lib/constants.js` | Central domain constants (stages, RSVP status, badge descriptions, etc.) |
+| `src/lib/__tests__/` | Unit tests (Vitest) |
 | `base44/entities/` | JSONC schema definitions for Base44 entities |
 | `base44/functions/` | Serverless backend functions (TypeScript, run on Base44) |
 

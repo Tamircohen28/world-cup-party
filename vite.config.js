@@ -31,7 +31,13 @@ export default defineConfig({
       provider: 'v8',
       reporter: ['text', 'lcov'],
       include: ['src/lib/**'],
-      exclude: ['src/lib/__tests__/**'],
+      exclude: ['src/lib/__tests__/**', 'src/lib/AuthContext.jsx', 'src/lib/PageNotFound.jsx', 'src/lib/app-params.js'],
+      thresholds: {
+        statements: 60,
+        branches: 60,
+        functions: 60,
+        lines: 60,
+      },
     },
   },
 });

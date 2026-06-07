@@ -5,3 +5,4 @@ ADRs document significant decisions made during development. Each record capture
 | # | Title | Status |
 |---|-------|--------|
 | [001](001-base44-baas.md) | Use Base44 as the backend-as-a-service layer | Accepted |
+| [002](002-custom-hooks-and-constants.md) | Custom hooks and centralized constants | Accepted |

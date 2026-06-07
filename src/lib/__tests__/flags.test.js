@@ -1,5 +1,14 @@
 import { describe, it, expect } from 'vitest';
-import { getFlag, getStageName, getStageColor } from '../flags';
+import {
+  getFlag,
+  getStageName,
+  getStageColor,
+  getStageBorderColor,
+  formatIDT,
+  formatDateIDT,
+  formatShortDateIDT,
+  DEFAULT_ITEMS,
+} from '../flags';
 
 describe('getFlag', () => {
   it('returns the correct flag emoji for known teams', () => {
@@ -60,5 +69,81 @@ describe('getStageColor', () => {
     const colors = ['group', 'r32', 'r16', 'qf', 'sf', 'third', 'final'].map(getStageColor);
     const unique = new Set(colors);
     expect(unique.size).toBe(7);
+  });
+});
+
+describe('getStageBorderColor', () => {
+  it('returns a border-l class for each known stage', () => {
+    ['group', 'r32', 'r16', 'qf', 'sf', 'third', 'final'].forEach(stage => {
+      const cls = getStageBorderColor(stage);
+      expect(cls).toMatch(/^border-l-/);
+    });
+  });
+
+  it('falls back to group border color for unknown stages', () => {
+    expect(getStageBorderColor('unknown')).toBe(getStageBorderColor('group'));
+  });
+
+  it('each stage has a unique border color', () => {
+    const colors = ['group', 'r32', 'r16', 'qf', 'sf', 'third', 'final'].map(getStageBorderColor);
+    expect(new Set(colors).size).toBe(7);
+  });
+});
+
+describe('formatIDT', () => {
+  it('returns a time string in HH:MM format', () => {
+    // 2026-06-11T19:00:00Z → 22:00 IDT (UTC+3)
+    const result = formatIDT('2026-06-11T19:00:00Z');
+    expect(result).toMatch(/^\d{2}:\d{2}$/);
+  });
+
+  it('offsets UTC by +3 hours for Jerusalem timezone', () => {
+    // midnight UTC → 03:00 IDT
+    const result = formatIDT('2026-06-11T00:00:00Z');
+    expect(result).toBe('03:00');
+  });
+
+  it('wraps midnight correctly', () => {
+    // 21:00 UTC → 00:00 IDT next day
+    const result = formatIDT('2026-06-11T21:00:00Z');
+    expect(result).toBe('00:00');
+  });
+});
+
+describe('formatDateIDT', () => {
+  it('returns a full weekday + date string', () => {
+    const result = formatDateIDT('2026-06-11T19:00:00Z');
+    expect(result).toMatch(/\w+day/); // contains weekday name
+    expect(result).toMatch(/June|Jun/);
+    expect(result).toContain('11');
+  });
+});
+
+describe('formatShortDateIDT', () => {
+  it('returns an abbreviated date string', () => {
+    const result = formatShortDateIDT('2026-06-11T19:00:00Z');
+    expect(typeof result).toBe('string');
+    expect(result.length).toBeGreaterThan(0);
+  });
+
+  it('is shorter than the full date', () => {
+    const full = formatDateIDT('2026-06-11T19:00:00Z');
+    const short = formatShortDateIDT('2026-06-11T19:00:00Z');
+    expect(short.length).toBeLessThan(full.length);
+  });
+});
+
+describe('DEFAULT_ITEMS', () => {
+  it('is a non-empty array', () => {
+    expect(Array.isArray(DEFAULT_ITEMS)).toBe(true);
+    expect(DEFAULT_ITEMS.length).toBeGreaterThan(0);
+  });
+
+  it('each item has name and emoji strings', () => {
+    DEFAULT_ITEMS.forEach(item => {
+      expect(typeof item.name).toBe('string');
+      expect(item.name.length).toBeGreaterThan(0);
+      expect(typeof item.emoji).toBe('string');
+    });
   });
 });

@@ -1,4 +1,4 @@
-.PHONY: install dev build lint lint-fix preview clean
+.PHONY: install dev build lint lint-fix typecheck test test-coverage preview clean
 
 install:
 	npm install
@@ -14,6 +14,15 @@ lint:
 
 lint-fix:
 	npm run lint:fix
+
+typecheck:
+	npm run typecheck
+
+test:
+	npm run test
+
+test-coverage:
+	npm run test:coverage
 
 preview:
 	npm run preview
