@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+        env:
+          VITE_BASE44_APP_ID: placeholder
+          VITE_BASE44_APP_BASE_URL: https://placeholder.base44.app
+
+  secret-scan:
+    name: Secret scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check for committed secrets
+        run: |
+          PATTERNS=(
+            'VITE_BASE44_APP_ID=[a-f0-9]{24}'
+            'base44_app_id.*[a-f0-9]{24}'
+            '"id":\s*"[a-f0-9]{24}"'
+            'sk-[a-zA-Z0-9]{32,}'
+            'PRIVATE_KEY'
+          )
+          FOUND=0
+          for PATTERN in "${PATTERNS[@]}"; do
+            if grep -rE "$PATTERN" \
+              --include="*.js" --include="*.jsx" --include="*.ts" --include="*.tsx" \
+              --include="*.json" --include="*.jsonc" --include="*.env" \
+              --exclude-dir=node_modules --exclude-dir=dist . ; then
+              echo "Potential secret matched pattern: $PATTERN"
+              FOUND=1
+            fi
+          done
+          if [[ $FOUND -eq 1 ]]; then
+            echo "Secret scan failed — review findings above"
+            exit 1
+          fi
+          echo "Secret scan passed"

@@ -1,0 +1,39 @@
+{
+  "name": "Notification",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "rsvp_change",
+        "host_assigned",
+        "host_left",
+        "item_claimed",
+        "item_unclaimed",
+        "reminder",
+        "no_host_warning",
+        "friend_joined"
+      ]
+    },
+    "match_id": {
+      "type": "string"
+    },
+    "actor_name": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "is_read": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "user_id",
+    "message"
+  ]
+}

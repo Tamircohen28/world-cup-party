@@ -1,0 +1,56 @@
+{
+  "name": "WatchParty",
+  "type": "object",
+  "properties": {
+    "match_id": {
+      "type": "string",
+      "description": "ID of the match"
+    },
+    "host_user_id": {
+      "type": "string"
+    },
+    "host_display_name": {
+      "type": "string"
+    },
+    "host_location": {
+      "type": "string"
+    },
+    "host_notes": {
+      "type": "string"
+    },
+    "items": {
+      "type": "array",
+      "description": "Items to bring list",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "emoji": {
+            "type": "string"
+          },
+          "claimed_by": {
+            "type": "string"
+          },
+          "claimed_by_name": {
+            "type": "string"
+          },
+          "is_default": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "attending_count": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "match_id"
+  ]
+}

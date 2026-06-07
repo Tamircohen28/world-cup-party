@@ -1,0 +1,11 @@
+{
+  "type": "splitwise",
+  "scopes": [
+    "read:user_profile",
+    "read:network",
+    "write:manage_network",
+    "read:expenses",
+    "write:create_expenses",
+    "write:modify_expenses"
+  ]
+}

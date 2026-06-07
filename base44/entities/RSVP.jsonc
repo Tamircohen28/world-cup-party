@@ -1,0 +1,28 @@
+{
+  "name": "RSVP",
+  "type": "object",
+  "properties": {
+    "match_id": {
+      "type": "string"
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "user_name": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "attending",
+        "not-attending",
+        "maybe"
+      ]
+    }
+  },
+  "required": [
+    "match_id",
+    "user_id",
+    "status"
+  ]
+}

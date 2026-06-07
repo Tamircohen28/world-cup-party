@@ -1,0 +1,79 @@
+{
+  "name": "Match",
+  "type": "object",
+  "properties": {
+    "match_number": {
+      "type": "number",
+      "description": "Sequential match number 1-104"
+    },
+    "home_team": {
+      "type": "string"
+    },
+    "away_team": {
+      "type": "string"
+    },
+    "kickoff_utc": {
+      "type": "string",
+      "description": "ISO datetime in UTC"
+    },
+    "stage": {
+      "type": "string",
+      "enum": [
+        "group",
+        "r32",
+        "r16",
+        "qf",
+        "sf",
+        "third",
+        "final"
+      ]
+    },
+    "group_name": {
+      "type": "string",
+      "description": "Group A-L or null for knockout"
+    },
+    "matchday": {
+      "type": "number",
+      "description": "1-3 for group stage"
+    },
+    "stadium": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "upcoming",
+        "live",
+        "finished"
+      ],
+      "default": "upcoming"
+    },
+    "home_score": {
+      "type": "number"
+    },
+    "away_score": {
+      "type": "number"
+    },
+    "results_calculated": {
+      "type": "boolean"
+    },
+    "actual_corners": {
+      "type": "number",
+      "description": "Total corners in the match"
+    },
+    "actual_yellow_cards": {
+      "type": "number",
+      "description": "Total yellow cards in the match"
+    },
+    "actual_red_cards": {
+      "type": "number",
+      "description": "Total red cards shown (0 = none)"
+    }
+  },
+  "required": [
+    "home_team",
+    "away_team",
+    "kickoff_utc",
+    "stage"
+  ]
+}

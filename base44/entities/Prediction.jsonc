@@ -1,0 +1,102 @@
+{
+  "name": "Prediction",
+  "type": "object",
+  "properties": {
+    "match_id": {
+      "type": "string"
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "user_display_name": {
+      "type": "string"
+    },
+    "home_score": {
+      "type": "number"
+    },
+    "away_score": {
+      "type": "number"
+    },
+    "predicted_result": {
+      "type": "string",
+      "enum": [
+        "home",
+        "away",
+        "draw"
+      ]
+    },
+    "predicted_winner": {
+      "type": "string",
+      "description": "Knockout only: team name expected to advance"
+    },
+    "submitted_at": {
+      "type": "string"
+    },
+    "edit_count": {
+      "type": "number",
+      "default": 0
+    },
+    "points_earned": {
+      "type": "number"
+    },
+    "points_breakdown": {
+      "type": "object",
+      "properties": {
+        "correct_result": {
+          "type": "boolean"
+        },
+        "correct_diff": {
+          "type": "boolean"
+        },
+        "exact_score": {
+          "type": "boolean"
+        },
+        "base_points": {
+          "type": "number"
+        },
+        "stage_multiplier": {
+          "type": "number"
+        },
+        "total": {
+          "type": "number"
+        },
+        "bonus_corners": {
+          "type": "number"
+        },
+        "bonus_cards": {
+          "type": "number"
+        },
+        "bonus_red_card": {
+          "type": "number"
+        },
+        "bonus_total": {
+          "type": "number"
+        }
+      }
+    },
+    "bonus_corners_bucket": {
+      "type": "string",
+      "enum": [
+        "0-5",
+        "6-8",
+        "9-11",
+        "12+"
+      ],
+      "description": "Predicted total corners bucket"
+    },
+    "bonus_yellow_cards": {
+      "type": "number",
+      "description": "Predicted total yellow cards in the match"
+    },
+    "bonus_red_card": {
+      "type": "boolean",
+      "description": "Predicted whether any red card will be shown"
+    }
+  },
+  "required": [
+    "match_id",
+    "user_id",
+    "home_score",
+    "away_score"
+  ]
+}

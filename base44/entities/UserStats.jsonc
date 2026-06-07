@@ -1,0 +1,58 @@
+{
+  "name": "UserStats",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string"
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "total_points": {
+      "type": "number",
+      "default": 0
+    },
+    "predictions_count": {
+      "type": "number",
+      "default": 0
+    },
+    "correct_results": {
+      "type": "number",
+      "default": 0
+    },
+    "correct_diffs": {
+      "type": "number",
+      "default": 0
+    },
+    "exact_scores": {
+      "type": "number",
+      "default": 0
+    },
+    "current_streak": {
+      "type": "number",
+      "default": 0
+    },
+    "longest_streak": {
+      "type": "number",
+      "default": 0
+    },
+    "rank": {
+      "type": "number"
+    },
+    "previous_rank": {
+      "type": "number"
+    },
+    "last_updated": {
+      "type": "string"
+    },
+    "badges": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "user_id"
+  ]
+}
