@@ -1,4 +1,4 @@
-.PHONY: install dev build lint lint-fix typecheck test test-coverage preview clean
+.PHONY: install dev build lint lint-fix typecheck test test-coverage preview clean agent-check
 
 install:
 	npm install
@@ -29,3 +29,6 @@ preview:
 
 clean:
 	rm -rf dist node_modules/.vite
+
+agent-check:
+	npm run agent:check

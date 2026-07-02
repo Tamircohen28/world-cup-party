@@ -1,0 +1,15 @@
+---
+description: Project-wide agent guidance (canonical source is AGENTS.md)
+alwaysApply: true
+---
+
+The canonical agent guidance for this repo is in [AGENTS.md](../../AGENTS.md). Read it for the
+project overview, key file locations, commands, testing, code style, security, and hard
+constraints. This rule is a thin adapter — do not duplicate policy here.
+
+Key reminders:
+- React + Vite SPA backed by Base44 (BaaS). Mobile-first (`max-w-lg mx-auto` on page roots).
+- Never commit secrets or real Base44 credentials; keep `base44/.app.jsonc` a placeholder.
+- `src/lib/matchData.js` is a static fixture list — do not fetch it dynamically.
+- Wrap all new AI components in `<ErrorBoundary>`.
+- Validate with `npm run agent:check && npm run lint && npm run typecheck && npm run test`.

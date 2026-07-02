@@ -7,6 +7,16 @@ on:
   workflow_dispatch:
 
 jobs:
+  agent-check:
+    name: Agent drift check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/check-no-agent-drift.mjs
+
   lint:
     name: Lint
     runs-on: ubuntu-latest
