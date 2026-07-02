@@ -1,0 +1,10 @@
+---
+description: Source and test conventions
+globs: src/**/*.{js,jsx,ts,tsx}
+---
+
+- Function components only; hooks in `src/hooks/`, shared logic in `src/lib/`.
+- UI primitives under `src/components/ui/` are shadcn/ui — prefer composing them over new ones.
+- Tests live in `src/lib/__tests__/` using Vitest + @testing-library/react. Add a test for any
+  bug fix or new lib function.
+- Keep pages mobile-first with `max-w-lg mx-auto` roots.
