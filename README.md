@@ -110,17 +110,31 @@ See [docs/engineering/architecture/ai-features.md](docs/engineering/architecture
    ```
    Open [http://localhost:5173](http://localhost:5173).
 
-### AI coding agents
+### Claude Code
 
-This repo supports **Claude Code**, **Cursor**, and **Codex**. Each reads `AGENTS.md` as the canonical guide (`CLAUDE.md` and `.cursor/rules/` are thin adapters).
+Open the repo folder in Claude Code. `CLAUDE.md` imports `@AGENTS.md` as the canonical guide.
 
-| Target | Setup |
-|--------|--------|
-| **Claude Code** | Open the repo folder; `CLAUDE.md` imports `@AGENTS.md`. Run `make install` then `make dev`. |
-| **Cursor** | Open the repo; rules in `.cursor/rules/` point to `AGENTS.md`. Run `make install` then `make dev`. |
-| **Codex** | Point Codex at the repo root; it reads `AGENTS.md`. Run `make install` then `make dev`. |
+```bash
+make install && make dev
+```
 
-Platform tool versions: see [platform-targets.json](docs/engineering/build-and-release/platform-targets.json).
+### Cursor
+
+Open the repo in Cursor. Rules in `.cursor/rules/` point agents to `AGENTS.md`.
+
+```bash
+make install && make dev
+```
+
+### Codex
+
+Point Codex at the repo root; it reads `AGENTS.md` directly.
+
+```bash
+make install && make dev
+```
+
+Platform tool versions: [platform-targets.json](docs/engineering/build-and-release/platform-targets.json).
 
 ## Development
 
