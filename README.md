@@ -5,13 +5,31 @@
 <h1 align="center">⚽ World Cup Party</h1>
 
 <p align="center">
+  <a href="https://github.com/TamirCohen28">
+    <img src="https://img.shields.io/badge/author-Tamir%20Cohen-181717?logo=github" alt="Author" />
+  </a>
   <a href="https://github.com/TamirCohen28/world-cup-party/actions/workflows/ci.yml">
     <img src="https://github.com/TamirCohen28/world-cup-party/actions/workflows/ci.yml/badge.svg" alt="CI" />
   </a>
   <a href="LICENSE">
     <img src="https://img.shields.io/github/license/TamirCohen28/world-cup-party" alt="MIT License" />
   </a>
+  <a href="package.json">
+    <img src="https://img.shields.io/badge/version-1.0.0-blue" alt="Version" />
+  </a>
   <img src="https://img.shields.io/badge/AI--powered-LLM%20match%20insights-22c55e" alt="AI-powered" />
+</p>
+
+<p align="center">
+  <a href="docs/engineering/build-and-release/platform-targets.json">
+    <img src="https://img.shields.io/badge/Claude%20Code-2.0.0-blueviolet" alt="Claude Code" />
+  </a>
+  <a href="docs/engineering/build-and-release/platform-targets.json">
+    <img src="https://img.shields.io/badge/Cursor-0.45.0-000000" alt="Cursor" />
+  </a>
+  <a href="docs/engineering/build-and-release/platform-targets.json">
+    <img src="https://img.shields.io/badge/Codex-0.40.0-412991" alt="Codex" />
+  </a>
 </p>
 
 <p align="center">
@@ -67,8 +85,9 @@ See [docs/engineering/architecture/ai-features.md](docs/engineering/architecture
 
 2. **Install dependencies**
    ```bash
-   npm install
+   make install
    ```
+   *Alternative (manual):* `npm ci`
 
 3. **Set up your Base44 app**
 
@@ -87,9 +106,21 @@ See [docs/engineering/architecture/ai-features.md](docs/engineering/architecture
 
 5. **Start the dev server**
    ```bash
-   npm run dev
+   make dev
    ```
    Open [http://localhost:5173](http://localhost:5173).
+
+### AI coding agents
+
+This repo supports **Claude Code**, **Cursor**, and **Codex**. Each reads `AGENTS.md` as the canonical guide (`CLAUDE.md` and `.cursor/rules/` are thin adapters).
+
+| Target | Setup |
+|--------|--------|
+| **Claude Code** | Open the repo folder; `CLAUDE.md` imports `@AGENTS.md`. Run `make install` then `make dev`. |
+| **Cursor** | Open the repo; rules in `.cursor/rules/` point to `AGENTS.md`. Run `make install` then `make dev`. |
+| **Codex** | Point Codex at the repo root; it reads `AGENTS.md`. Run `make install` then `make dev`. |
+
+Platform tool versions: see [platform-targets.json](docs/engineering/build-and-release/platform-targets.json).
 
 ## Development
 
@@ -105,7 +136,8 @@ npm run typecheck   # TypeScript check
 - [User docs](docs/user/README.md) — concepts, quick-start guide, troubleshooting
 - [Engineering docs](docs/engineering/README.md) — architecture, build workflow, ADRs
 - [AI features](docs/engineering/architecture/ai-features.md) — LLM integration details
-- [Changelog](docs/CHANGELOG.md)
+- [Changelog](docs/CHANGELOG.md) (also [CHANGELOG.md](CHANGELOG.md) at repo root)
+- [Versioning policy](docs/engineering/build-and-release/versioning.md)
 
 ## Contributing
 

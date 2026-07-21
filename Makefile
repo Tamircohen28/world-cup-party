@@ -1,7 +1,15 @@
-.PHONY: install dev build lint lint-fix typecheck test test-coverage preview clean agent-check
+.PHONY: install update uninstall dev build lint lint-fix typecheck test test-coverage preview clean \
+	agent-check check-agent-drift check-feature-equivalence check-platform-targets \
+	platform-targets-sync platform-targets-assert agent\:check agent-polish-gate
 
 install:
-	npm install
+	npm ci
+
+update:
+	npm update
+
+uninstall:
+	rm -rf node_modules dist node_modules/.vite
 
 dev:
 	npm run dev
@@ -32,3 +40,22 @@ clean:
 
 agent-check:
 	npm run agent:check
+
+check-agent-drift:
+	npm run agent:check
+
+check-feature-equivalence:
+	bash scripts/check-feature-equivalence.sh .
+
+check-platform-targets:
+	bash scripts/check-platform-targets.sh .
+
+platform-targets-sync:
+	bash scripts/check-platform-targets.sh . --sync
+
+platform-targets-assert:
+	bash scripts/check-platform-targets.sh . --assert-current
+
+agent\:check: check-agent-drift check-feature-equivalence check-platform-targets
+
+agent-polish-gate: platform-targets-sync platform-targets-assert agent\:check
