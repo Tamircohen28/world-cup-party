@@ -78,6 +78,11 @@ secrets or real Base44 credentials.
 wrapped in `<ErrorBoundary>` in `GameDetail.jsx`. See
 [docs/engineering/architecture/ai-features.md](docs/engineering/architecture/ai-features.md).
 
+## Versioning and releases
+
+Follow [docs/engineering/build-and-release/versioning.md](docs/engineering/build-and-release/versioning.md).
+Update `docs/CHANGELOG.md` and root `CHANGELOG.md` together; tag releases as `vX.Y.Z`.
+
 ## Hard constraints
 
 - Never commit `.env.local` or any file containing real Base44 credentials.
